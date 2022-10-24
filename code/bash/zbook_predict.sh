@@ -7,6 +7,6 @@ BASE_SCRIPT="/home/manolotis/sandbox/robustness_benchmark/physicsBased/code/pred
 
 python $BASE_SCRIPT \
   --config $BASE_CONFIG \
-  --test-data-path $TEST_DATA_PATH \
+  --test-data-path "$TEST_DATA_PATH" \
   --batch-size $BATCH_SIZE \
   --n-jobs $N_JOBS --out-path $OUT_PATH \
