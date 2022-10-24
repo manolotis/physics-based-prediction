@@ -1,0 +1,3 @@
+predictions/
+**.pyc
+**/__pycache__/
