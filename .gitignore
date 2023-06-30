@@ -1,3 +1,5 @@
 predictions/
 **.pyc
 **/__pycache__/
+evaluations/
+code/bash/copy_evaluations.sh

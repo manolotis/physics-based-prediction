@@ -1,7 +1,7 @@
 test:
   data_config:
     dataset_config:
-      data_path: "/home/manolotis/sandbox/robustness_benchmark/lstmAutoencoder/data/prerendered/training/"
+      data_path: "ABSOLUTE_PATH_TO_DATA"
       n_shards: 1
       input_data: [ "xy", "v_xy", "valid" ]
     dataloader_config:
@@ -10,7 +10,9 @@ test:
       num_workers: 8
   output_config:
     visualize: False
-    out_path: "/home/manolotis/sandbox/robustness_benchmark/physicsBased/predictions/"
-    viz_path: "/home/manolotis/sandbox/robustness_benchmark/physicsBased/plots/predictions/"
+    out_path: "ABSOLUTE_PATH_TO_PREDICTIONS_FOLDER"
+    viz_path: "/ABSOLUTE_PATH_TO_PREDICTIONS_PLOTS_FOLDER"
+#   example out_path: "/home/robustness_benchmark/physicsBased/predictions/"
+#   example viz_path: "/home/robustness_benchmark/physicsBased/plots/predictions/"
 model:
   name: "cv"

@@ -1,9 +1,11 @@
 - data_config:
     dataset_config:
-      data_path: "/home/manolotis/sandbox/robustness_benchmark/physicsBased/predictions/"
+      data_path: "ABSOLUTE_PATH_TO_PREDICTIONS_FOLDER"
+#      example data_path: "/home/robustness_benchmark/physicsBased/predictions/"
     dataloader_config:
       num_workers: 8
   output_config:
-    out_path: "/home/manolotis/sandbox/robustness_benchmark/physicsBased/evaluations/"
+    out_path: "ABSOLUTE_PATH_TO_EVALUATIONS_FOLDER"
+#    example out_path: "/home/robustness_benchmark/physicsBased/evaluations/"
   model:
     name: "cv"
