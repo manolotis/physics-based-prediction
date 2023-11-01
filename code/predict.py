@@ -1,6 +1,6 @@
 import sys
 
-sys.path.append("/home/manolotis/sandbox/robustness_benchmark/")
+sys.path.append("/home/manolotis/sandbox/scenario_based_evaluation/")
 
 import torch
 
@@ -10,7 +10,7 @@ torch.multiprocessing.set_sharing_strategy('file_system')
 from physicsBased.code.model.data import CVDataset
 from torch.utils.data import Dataset, DataLoader
 from multipathPP.code.utils.predict_utils import get_config, parse_arguments
-from physicsBased.code.models import CV
+from physicsBased.code.models import CV, CVX
 import os
 import glob
 import random
@@ -62,14 +62,14 @@ for data in tqdm(test_dataloader):
     vx = v_xy[:, -1:, 0]
     vy = v_xy[:, -1:, 1]
 
-    # ToDo: acocunt for possibly invalid current timesteps
-
-    x_pred, y_pred = CV.predict(x, y, vx, vy, t)
-
-    coordinates = np.stack([x_pred, y_pred], axis=-1)
+    if config["model"]["name"] == "cv":
+        coordinates = CV.predict(x, y, vx, vy, t)
+    elif config["model"]["name"] == "cvx":
+        coordinates = CVX.predict(x, y, vx, vy, t, N=6)
+    else:
+        raise ValueError
 
     for agent_index, agent_id in enumerate(data["agent_id"]):
-
         if not valid[agent_index, -1]:
             continue
         filename = generate_filename(data, agent_index)
@@ -77,12 +77,16 @@ for data in tqdm(test_dataloader):
             "scenario_id": data["scenario_id"][agent_index],
             "agent_id": data["agent_id"][agent_index],
             "agent_type": data["target/agent_type"][agent_index].flatten(),
-            "coordinates": coordinates[agent_index:agent_index + 1],
             "probabilities": None,
             "target/history/xy": data["target/history/xy"][agent_index],
             "target/future/xy": data["target/future/xy"][agent_index],
             "target/history/valid": data["target/history/valid"][agent_index],
             "target/future/valid": data["target/future/valid"][agent_index]
         }
+        # depending on whether or not it's CV or CVX, we want to keep the first dimension
+        if config["model"]["name"] == "cv":
+            savedata["coordinates"] = coordinates[agent_index:agent_index + 1]
+        elif config["model"]["name"] == "cvx":
+            savedata["coordinates"] = coordinates[agent_index]
 
         np.savez_compressed(os.path.join(savefolder, filename), **savedata)

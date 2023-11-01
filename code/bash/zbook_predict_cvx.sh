@@ -2,7 +2,7 @@ TEST_DATA_PATH="/home/manolotis/sandbox/scenario_based_evaluation/lstmEncoderDec
 OUT_PATH="/home/manolotis/sandbox/scenario_based_evaluation/physicsBased/predictions/"
 BATCH_SIZE=8
 N_JOBS=2
-BASE_CONFIG="/home/manolotis/sandbox/scenario_based_evaluation/physicsBased/code/configs/predict.yaml"
+BASE_CONFIG="/home/manolotis/sandbox/scenario_based_evaluation/physicsBased/code/configs/predict_cvx.yaml"
 BASE_SCRIPT="/home/manolotis/sandbox/scenario_based_evaluation/physicsBased/code/predict.py"
 
 python $BASE_SCRIPT \
