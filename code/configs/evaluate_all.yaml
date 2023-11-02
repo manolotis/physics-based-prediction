@@ -7,8 +7,8 @@ output_config:
   out_path: "/home/manolotis/sandbox/scenario_based_evaluation/physicsBased/evaluations/"
 models:
   - name: "cv"
-  - name: "cvx6"
-  - name: "cvx20"
+#  - name: "cvx6"
+#  - name: "cvx20"
 
 
 
