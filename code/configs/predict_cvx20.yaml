@@ -13,5 +13,5 @@ test:
     out_path: "ABSOLUTE_PATH_TO_PREDICTIONS_FOLDER"
     viz_path: "/ABSOLUTE_PATH_TO_PREDICTIONS_PLOTS_FOLDER"
 model:
-  name: "cvx"
+  name: "cvx20"
   n_predictions: 20
