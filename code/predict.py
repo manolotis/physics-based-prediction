@@ -67,7 +67,7 @@ for data in tqdm(test_dataloader):
     elif "cvx" in config["model"]["name"]:
         coordinates = CVX.predict(x, y, vx, vy, t, N=config["model"]["n_predictions"])
     else:
-        raise ValueError
+        raise ValueError("Unrecognized model name")
 
     for agent_index, agent_id in enumerate(data["agent_id"]):
         if not valid[agent_index, -1]:
@@ -86,7 +86,9 @@ for data in tqdm(test_dataloader):
         # depending on whether or not it's CV or CVX, we want to keep the first dimension
         if config["model"]["name"] == "cv":
             savedata["coordinates"] = coordinates[agent_index:agent_index + 1]
-        elif config["model"]["name"] == "cvx":
+        elif "cvx" in config["model"]["name"]:
             savedata["coordinates"] = coordinates[agent_index]
+        else:
+            raise ValueError("Unrecognized model name")
 
         np.savez_compressed(os.path.join(savefolder, filename), **savedata)
