@@ -64,7 +64,7 @@ for data in tqdm(test_dataloader):
 
     if config["model"]["name"] == "cv":
         coordinates = CV.predict(x, y, vx, vy, t)
-    elif config["model"]["name"] == "cvx":
+    elif "cvx" in config["model"]["name"]:
         coordinates = CVX.predict(x, y, vx, vy, t, N=config["model"]["n_predictions"])
     else:
         raise ValueError
